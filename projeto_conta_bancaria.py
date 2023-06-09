@@ -17,16 +17,32 @@ extrato = ""
 numero_saques = 0
 LIMITE_SAQUES = 3
 
+def depositar(quantia):
+    global extrato
+    global saldo
+    if quantia > 0:
+        extrato += f"Depósito:  + R$ {quantia:.2f}\n"
+        saldo += quantia
+        return True
+    else:
+        return False
+
 while True:
     opcao = input(menu)
 
     if opcao == "d":
         valor = float(input("Digite o quanto quer depositar:"))
-        if valor > 0:
-            extrato += f"Depósito:  + R$ {valor:.2f}\n"
-            saldo += valor
+        if depositar(valor) == True:
+            print("Operação realizada com sucesso!")
         else:
             print("Operação falhou pois o valor é inválido")
+
+
+        # if valor > 0:
+        #     extrato += f"Depósito:  + R$ {valor:.2f}\n"
+        #     saldo += valor
+        # else:
+        #     print("Operação falhou pois o valor é inválido")
 
     elif opcao == "s":
         if numero_saques < LIMITE_SAQUES:
